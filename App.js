@@ -11,6 +11,7 @@ import ReportItemScreen from "./screens/ReportItemScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ItemDetailsScreen from "./screens/ItemDetailsScreen";
 import MyItemsScreen from "./screens/MyItemsScreen";
+import ChatbotScreen from "./screens/ChatbotScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen
 name="ReportItem"
   component={ReportItemScreen}
+  
 />
         <Stack.Screen
   name="Search"
@@ -39,7 +41,7 @@ name="ReportItem"
 <Stack.Screen
   name="MyItems"
   component={MyItemsScreen}
-/>
+/><Stack.Screen name="Chatbot" component={ChatbotScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

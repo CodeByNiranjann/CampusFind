@@ -1,0 +1,182 @@
+[
+  {
+    "id": "1",
+    "type": "lost",
+    "category": "wallet",
+    "description": "I lost my black leather wallet near the college canteen",
+    "location": "College Canteen",
+    "questions": [
+      "What color is the wallet?",
+      "What type of wallet is it?",
+      "Where did you last see the wallet?"
+    ]
+  },
+  {
+    "id": "2",
+    "type": "lost",
+    "category": "phone",
+    "description": "I lost my black Samsung phone in the classroom",
+    "location": "Classroom",
+    "questions": [
+      "What is the phone brand?",
+      "What color is the phone?",
+      "In which classroom did you lose it?"
+    ]
+  },
+  {
+    "id": "3",
+    "type": "lost",
+    "category": "bag",
+    "description": "I lost a blue college bag near the library",
+    "location": "Library",
+    "questions": [
+      "What color is the bag?",
+      "What type of bag is it?",
+      "Where did you last see the bag?"
+    ]
+  },
+  {
+    "id": "4",
+    "type": "lost",
+    "category": "watch",
+    "description": "I lost my black wrist watch near the college playground",
+    "location": "College Playground",
+    "questions": [
+      "What is the brand of the watch?",
+      "What is the color of the watch?",
+      "Where did you last see the watch?"
+    ]
+  },
+  {
+    "id": "5",
+    "type": "lost",
+    "category": "money",
+    "description": "I lost some money near the college canteen",
+    "location": "College Canteen",
+    "questions": [
+      "How much money did you lose?",
+      "What type of currency was it?",
+      "Where did you last see the money?"
+    ]
+  },
+  {
+    "id": "6",
+    "type": "lost",
+    "category": "laptop",
+    "description": "I lost my silver HP laptop in the computer lab",
+    "location": "Computer Lab",
+    "questions": [
+      "What is the laptop brand?",
+      "What is the color of the laptop?",
+      "In which room did you last see it?"
+    ]
+  },
+  {
+    "id": "7",
+    "type": "lost",
+    "category": "id_card",
+    "description": "I lost my college ID card near the main block",
+    "location": "Main Block",
+    "questions": [
+      "What is your name on the ID card?",
+      "What is your department?",
+      "Where did you last see the ID card?"
+    ]
+  },
+  {
+    "id": "8",
+    "type": "lost",
+    "category": "keys",
+    "description": "I lost a bunch of keys near the college parking area",
+    "location": "College Parking",
+    "questions": [
+      "How many keys were on the keychain?",
+      "What color is the keychain?",
+      "Where did you last see the keys?"
+    ]
+  },
+  {
+    "id": "9",
+    "type": "lost",
+    "category": "earphones",
+    "description": "I lost my white wireless earphones inside the library",
+    "location": "Library",
+    "questions": [
+      "What brand are the earphones?",
+      "What color are the earphones?",
+      "Where did you last see the earphones?"
+    ]
+  },
+  {
+    "id": "10",
+    "type": "lost",
+    "category": "calculator",
+    "description": "I lost my scientific calculator in the mathematics classroom",
+    "location": "Mathematics Classroom",
+    "questions": [
+      "What is the calculator brand?",
+      "What model of calculator is it?",
+      "Where did you last use the calculator?"
+    ]
+  },
+  {
+    "id": "11",
+    "type": "lost",
+    "category": "water_bottle",
+    "description": "I lost my blue water bottle near the college auditorium",
+    "location": "College Auditorium",
+    "questions": [
+      "What color is the bottle?",
+      "What brand is the bottle?",
+      "Where did you last see the bottle?"
+    ]
+  },
+  {
+    "id": "12",
+    "type": "lost",
+    "category": "helmet",
+    "description": "I lost my black helmet near the college parking area",
+    "location": "College Parking",
+    "questions": [
+      "What color is the helmet?",
+      "What brand is the helmet?",
+      "Where did you park your vehicle?"
+    ]
+  },
+  {
+    "id": "13",
+    "type": "lost",
+    "category": "book",
+    "description": "I lost my programming book in the college library",
+    "location": "College Library",
+    "questions": [
+      "What is the name of the book?",
+      "Who is the author?",
+      "Where did you last see the book?"
+    ]
+  },
+  {
+    "id": "14",
+    "type": "lost",
+    "category": "pen_drive",
+    "description": "I lost my black pen drive in the computer lab",
+    "location": "Computer Lab",
+    "questions": [
+      "What is the storage capacity of the pen drive?",
+      "What color is the pen drive?",
+      "Where did you last use the pen drive?"
+    ]
+  },
+  {
+    "id": "15",
+    "type": "lost",
+    "category": "spectacles",
+    "description": "I lost my spectacles near the college classroom",
+    "location": "Classroom",
+    "questions": [
+      "What color is the spectacles frame?",
+      "What type of frame does it have?",
+      "Where did you last see the spectacles?"
+    ]
+  }
+]

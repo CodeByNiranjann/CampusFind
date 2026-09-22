@@ -166,6 +166,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  signOut,
 } from "firebase/auth";
 
 import { auth } from "./firebase";
@@ -267,4 +268,8 @@ export async function resetPassword(email) {
   }
 
   await sendPasswordResetEmail(auth, normalizedEmail);
+}
+// LOGOUT FUNCTION
+export async function logoutUser() {
+  await signOut(auth);
 }

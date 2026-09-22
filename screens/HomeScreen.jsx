@@ -1,958 +1,577 @@
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   Pressable,
-//   ScrollView,
-// } from "react-native";
-
-// import { theme } from "../constants/theme";
-
-// export default function HomeScreen({ navigation }) {
-//   return (
-//     <ScrollView
-//       style={styles.container}
-//       contentContainerStyle={styles.content}
-//     >
-//       {/* Header */}
-//       <View style={styles.header}>
-//         <View>
-//           <Text style={styles.greeting}>Hello 👋</Text>
-//           <Text style={styles.title}>FindBack</Text>
-//           <Text style={styles.subtitle}>
-//             Find what you lost. Return what you found.
-//           </Text>
-//         </View>
-
-//         <Pressable
-//           style={styles.notificationButton}
-//           onPress={() => navigation.navigate("Notifications")}
-//         >
-//           <Text style={styles.notificationIcon}>🔔</Text>
-//         </Pressable>
-//       </View>
-
-//       {/* Search */}
-//       <Pressable
-//         style={styles.searchBox}
-//         onPress={() => navigation.navigate("Search")}
-//       >
-//         <Text style={styles.searchIcon}>🔍</Text>
-//         <Text style={styles.searchText}>
-//           Search lost or found items...
-//         </Text>
-//       </Pressable>
-
-//       {/* Main Actions */}
-//       <Text style={styles.sectionTitle}>What happened?</Text>
-
-//       <View style={styles.actionRow}>
-//         <Pressable
-//           style={[styles.actionCard, styles.lostCard]}
-//           onPress={() =>
-//             navigation.navigate("ReportItem", {
-//               type: "LOST",
-//             })
-//           }
-//         >
-//           <View style={styles.iconCircle}>
-//             <Text style={styles.actionIcon}>🔎</Text>
-//           </View>
-
-//           <Text style={styles.actionTitle}>I Lost Something</Text>
-
-//           <Text style={styles.actionDescription}>
-//             Report an item you lost on campus
-//           </Text>
-//         </Pressable>
-
-//         <Pressable
-//           style={[styles.actionCard, styles.foundCard]}
-//           onPress={() =>
-//             navigation.navigate("ReportItem", {
-//               type: "FOUND",
-//             })
-//           }
-//         >
-//           <View style={styles.iconCircle}>
-//             <Text style={styles.actionIcon}>📦</Text>
-//           </View>
-
-//           <Text style={styles.actionTitle}>I Found Something</Text>
-
-//           <Text style={styles.actionDescription}>
-//             Help someone find their item
-//           </Text>
-//         </Pressable>
-//       </View>
-
-//       {/* Possible Matches */}
-//       <View style={styles.sectionHeader}>
-//         <Text style={styles.sectionTitle}>Possible Matches</Text>
-
-//         <Pressable
-//           onPress={() => navigation.navigate("Search")}
-//         >
-//           <Text style={styles.seeAll}>See All</Text>
-//         </Pressable>
-//       </View>
-
-//       <View style={styles.emptyCard}>
-//         <Text style={styles.emptyIcon}>🔗</Text>
-
-//         <Text style={styles.emptyTitle}>
-//           No possible matches yet
-//         </Text>
-
-//         <Text style={styles.emptyText}>
-//           When we find a possible match for your lost or found item,
-//           it will appear here.
-//         </Text>
-//       </View>
-
-//       {/* Recent Items */}
-//       <View style={styles.sectionHeader}>
-//         <Text style={styles.sectionTitle}>Recent Items</Text>
-
-//         <Pressable
-//           onPress={() => navigation.navigate("Search")}
-//         >
-//           <Text style={styles.seeAll}>View All</Text>
-//         </Pressable>
-//       </View>
-
-//       <View style={styles.itemCard}>
-//         <View style={styles.itemIcon}>
-//           <Text style={styles.itemEmoji}>📱</Text>
-//         </View>
-
-//         <View style={styles.itemInfo}>
-//           <Text style={styles.itemName}>Example Item</Text>
-
-//           <Text style={styles.itemLocation}>
-//             📍 Library
-//           </Text>
-
-//           <Text style={styles.itemDate}>
-//             Recently reported
-//           </Text>
-//         </View>
-
-//         <View style={styles.foundBadge}>
-//           <Text style={styles.foundBadgeText}>FOUND</Text>
-//         </View>
-//       </View>
-
-//       {/* Quick Info */}
-//       <View style={styles.infoCard}>
-//         <Text style={styles.infoTitle}>
-//           💡 How FindBack works
-//         </Text>
-
-//         <Text style={styles.infoText}>
-//           Report your lost or found item → We find possible matches →
-//           Connect securely → Verify ownership → Return the item.
-//         </Text>
-//       </View>
-
-//       {/* Bottom spacing */}
-//       <View style={styles.bottomSpace} />
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: theme.colors.background,
-//   },
-
-//   content: {
-//     padding: theme.spacing.lg,
-//     paddingBottom: theme.spacing.xxl,
-//   },
-
-//   header: {
-//     flexDirection: "row",
-//     justifyContent: "space-between",
-//     alignItems: "flex-start",
-//     marginTop: theme.spacing.md,
-//     marginBottom: theme.spacing.lg,
-//   },
-
-//   greeting: {
-//     fontSize: theme.fontSize.body,
-//     color: theme.colors.muted,
-//     marginBottom: theme.spacing.xs,
-//   },
-
-//   title: {
-//     fontSize: 30,
-//     fontWeight: "700",
-//     color: theme.colors.text,
-//   },
-
-//   subtitle: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.muted,
-//     marginTop: theme.spacing.xs,
-//   },
-
-//   notificationButton: {
-//     width: 46,
-//     height: 46,
-//     borderRadius: theme.radius.full,
-//     backgroundColor: theme.colors.surface,
-//     borderWidth: 1,
-//     borderColor: theme.colors.border,
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-
-//   notificationIcon: {
-//     fontSize: 21,
-//   },
-
-//   searchBox: {
-//     height: 54,
-//     backgroundColor: theme.colors.surface,
-//     borderWidth: 1,
-//     borderColor: theme.colors.border,
-//     borderRadius: theme.radius.md,
-//     flexDirection: "row",
-//     alignItems: "center",
-//     paddingHorizontal: theme.spacing.md,
-//     marginBottom: theme.spacing.xl,
-//   },
-
-//   searchIcon: {
-//     fontSize: 18,
-//     marginRight: theme.spacing.sm,
-//   },
-
-//   searchText: {
-//     color: theme.colors.muted,
-//     fontSize: theme.fontSize.body,
-//   },
-
-//   sectionTitle: {
-//     fontSize: theme.fontSize.subtitle,
-//     fontWeight: "700",
-//     color: theme.colors.text,
-//     marginBottom: theme.spacing.md,
-//   },
-
-//   actionRow: {
-//     flexDirection: "row",
-//     gap: theme.spacing.md,
-//     marginBottom: theme.spacing.xl,
-//   },
-
-//   actionCard: {
-//     flex: 1,
-//     minHeight: 180,
-//     borderRadius: theme.radius.lg,
-//     padding: theme.spacing.md,
-//     borderWidth: 1,
-//   },
-
-//   lostCard: {
-//     backgroundColor: "#FEF2F2",
-//     borderColor: "#FECACA",
-//   },
-
-//   foundCard: {
-//     backgroundColor: "#F0FDF4",
-//     borderColor: "#BBF7D0",
-//   },
-
-//   iconCircle: {
-//     width: 46,
-//     height: 46,
-//     borderRadius: theme.radius.full,
-//     backgroundColor: theme.colors.surface,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginBottom: theme.spacing.md,
-//   },
-
-//   actionIcon: {
-//     fontSize: 22,
-//   },
-
-//   actionTitle: {
-//     fontSize: theme.fontSize.body,
-//     fontWeight: "700",
-//     color: theme.colors.text,
-//     marginBottom: theme.spacing.sm,
-//   },
-
-//   actionDescription: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.muted,
-//     lineHeight: 18,
-//   },
-
-//   sectionHeader: {
-//     flexDirection: "row",
-//     justifyContent: "space-between",
-//     alignItems: "center",
-//     marginBottom: theme.spacing.md,
-//   },
-
-//   seeAll: {
-//     color: theme.colors.primary,
-//     fontSize: theme.fontSize.small,
-//     fontWeight: "600",
-//   },
-
-//   emptyCard: {
-//     backgroundColor: theme.colors.surface,
-//     borderWidth: 1,
-//     borderColor: theme.colors.border,
-//     borderRadius: theme.radius.lg,
-//     padding: theme.spacing.xl,
-//     alignItems: "center",
-//     marginBottom: theme.spacing.xl,
-//   },
-
-//   emptyIcon: {
-//     fontSize: 34,
-//     marginBottom: theme.spacing.sm,
-//   },
-
-//   emptyTitle: {
-//     fontSize: theme.fontSize.body,
-//     fontWeight: "700",
-//     color: theme.colors.text,
-//     textAlign: "center",
-//   },
-
-//   emptyText: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.muted,
-//     textAlign: "center",
-//     lineHeight: 18,
-//     marginTop: theme.spacing.sm,
-//   },
-
-//   itemCard: {
-//     backgroundColor: theme.colors.surface,
-//     borderWidth: 1,
-//     borderColor: theme.colors.border,
-//     borderRadius: theme.radius.lg,
-//     padding: theme.spacing.md,
-//     flexDirection: "row",
-//     alignItems: "center",
-//     marginBottom: theme.spacing.xl,
-//   },
-
-//   itemIcon: {
-//     width: 58,
-//     height: 58,
-//     borderRadius: theme.radius.md,
-//     backgroundColor: theme.colors.primaryLight,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginRight: theme.spacing.md,
-//   },
-
-//   itemEmoji: {
-//     fontSize: 25,
-//   },
-
-//   itemInfo: {
-//     flex: 1,
-//   },
-
-//   itemName: {
-//     fontSize: theme.fontSize.body,
-//     fontWeight: "700",
-//     color: theme.colors.text,
-//   },
-
-//   itemLocation: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.muted,
-//     marginTop: 4,
-//   },
-
-//   itemDate: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.muted,
-//     marginTop: 2,
-//   },
-
-//   foundBadge: {
-//     backgroundColor: "#DCFCE7",
-//     paddingHorizontal: theme.spacing.sm,
-//     paddingVertical: 6,
-//     borderRadius: theme.radius.full,
-//   },
-
-//   foundBadgeText: {
-//     color: theme.colors.found,
-//     fontSize: 10,
-//     fontWeight: "700",
-//   },
-
-//   infoCard: {
-//     backgroundColor: theme.colors.primaryLight,
-//     borderRadius: theme.radius.lg,
-//     padding: theme.spacing.lg,
-//     borderWidth: 1,
-//     borderColor: "#DBEAFE",
-//   },
-
-//   infoTitle: {
-//     fontSize: theme.fontSize.body,
-//     fontWeight: "700",
-//     color: theme.colors.primary,
-//     marginBottom: theme.spacing.sm,
-//   },
-
-//   infoText: {
-//     fontSize: theme.fontSize.small,
-//     color: theme.colors.textSecondary,
-//     lineHeight: 19,
-//   },
-
-//   bottomSpace: {
-//     height: theme.spacing.xl,
-//   },
-// });
+import React from "react";
 
 import {
   View,
   Text,
+  TouchableOpacity,
   StyleSheet,
-  Pressable,
   ScrollView,
+  Alert,
 } from "react-native";
 
-import { theme } from "../constants/theme";
+import { logoutUser } from "../services/auth";
 
 export default function HomeScreen({ navigation }) {
-  return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-    >
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerText}>
-          <Text style={styles.greeting}>Hello 👋</Text>
 
-          <Text style={styles.title}>FindBack</Text>
+  // LOGOUT FUNCTION
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Login" }],
+      });
+
+    } catch (error) {
+      Alert.alert(
+        "Logout Failed",
+        "Unable to logout. Please try again."
+      );
+    }
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+
+      {/* ================= HEADER ================= */}
+      <View style={styles.header}>
+
+        <View>
+          <Text style={styles.hello}>
+            Hello 👋
+          </Text>
+
+          <Text style={styles.title}>
+            FindBack
+          </Text>
 
           <Text style={styles.subtitle}>
             Find what you lost. Return what you found.
           </Text>
         </View>
 
-        <Pressable
-          style={styles.notificationButton}
-          onPress={() => {
-            // Notifications screen will be added later
-          }}
-        >
-          <Text style={styles.notificationIcon}>🔔</Text>
-        </Pressable>
+        {/* HEADER BUTTONS */}
+        <View style={styles.headerButtons}>
+
+          {/* Notification */}
+          <TouchableOpacity
+            style={styles.notificationButton}
+          >
+            <Text style={styles.notificationIcon}>
+              🔔
+            </Text>
+          </TouchableOpacity>
+
+          {/* Logout */}
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={handleLogout}
+          >
+            <Text style={styles.logoutIcon}>
+              🚪
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+
       </View>
 
-      {/* Search */}
-      <Pressable
+
+      {/* ================= SEARCH ================= */}
+      <TouchableOpacity
         style={styles.searchBox}
         onPress={() => navigation.navigate("Search")}
       >
-        <Text style={styles.searchIcon}>🔍</Text>
+        <Text style={styles.searchIcon}>
+          🔍
+        </Text>
 
         <Text style={styles.searchText}>
           Search lost or found items...
         </Text>
-      </Pressable>
+      </TouchableOpacity>
 
-      {/* My Items */}
-      <Pressable
+
+      {/* ================= MY ITEMS ================= */}
+      <TouchableOpacity
         style={styles.myItemsCard}
         onPress={() => navigation.navigate("MyItems")}
       >
-        <View style={styles.myItemsIcon}>
-          <Text style={styles.myItemsEmoji}>📋</Text>
+
+        <View style={styles.cardLeft}>
+
+          <View style={styles.iconBox}>
+            <Text style={styles.cardIcon}>
+              📋
+            </Text>
+          </View>
+
+          <View>
+            <Text style={styles.cardTitle}>
+              My Items
+            </Text>
+
+            <Text style={styles.cardSubtitle}>
+              View your lost and found reports
+            </Text>
+          </View>
+
         </View>
 
-        <View style={styles.myItemsInfo}>
-          <Text style={styles.myItemsTitle}>
-            My Items
-          </Text>
-
-          <Text style={styles.myItemsDescription}>
-            View your lost and found reports
-          </Text>
-        </View>
-
-        <Text style={styles.myItemsArrow}>
+        <Text style={styles.arrow}>
           →
         </Text>
-      </Pressable>
 
-      {/* Main Actions */}
+      </TouchableOpacity>
+
+
+      {/* ================= AI CHATBOT ================= */}
+      <TouchableOpacity
+        style={styles.chatbotCard}
+        onPress={() => navigation.navigate("Chatbot")}
+      >
+
+        <View style={styles.cardLeft}>
+
+          <View style={styles.chatbotIconBox}>
+            <Text style={styles.chatbotIcon}>
+              🤖
+            </Text>
+          </View>
+
+          <View>
+            <Text style={styles.chatbotTitle}>
+              AI Chatbot
+            </Text>
+
+            <Text style={styles.chatbotSubtitle}>
+              Ask questions about your lost or found item
+            </Text>
+          </View>
+
+        </View>
+
+        <Text style={styles.chatbotArrow}>
+          →
+        </Text>
+
+      </TouchableOpacity>
+
+
+      {/* ================= WHAT HAPPENED ================= */}
       <Text style={styles.sectionTitle}>
         What happened?
       </Text>
 
+
+      {/* ================= LOST / FOUND ================= */}
       <View style={styles.actionRow}>
-        {/* Lost */}
-        <Pressable
-          style={[styles.actionCard, styles.lostCard]}
-          onPress={() =>
-            navigation.navigate("ReportItem", {
-              type: "LOST",
-            })
-          }
+
+        {/* Lost Something */}
+        <TouchableOpacity
+          style={styles.lostCard}
+          onPress={() => navigation.navigate("ReportItem")}
         >
-          <View style={styles.iconCircle}>
-            <Text style={styles.actionIcon}>🔎</Text>
+
+          <View style={styles.circleIcon}>
+            <Text style={styles.largeIcon}>
+              🔍
+            </Text>
           </View>
 
           <Text style={styles.actionTitle}>
             I Lost Something
           </Text>
 
-          <Text style={styles.actionDescription}>
+          <Text style={styles.actionSubtitle}>
             Report an item you lost on campus
           </Text>
-        </Pressable>
 
-        {/* Found */}
-        <Pressable
-          style={[styles.actionCard, styles.foundCard]}
-          onPress={() =>
-            navigation.navigate("ReportItem", {
-              type: "FOUND",
-            })
-          }
+        </TouchableOpacity>
+
+
+        {/* Found Something */}
+        <TouchableOpacity
+          style={styles.foundCard}
+          onPress={() => navigation.navigate("ReportItem")}
         >
-          <View style={styles.iconCircle}>
-            <Text style={styles.actionIcon}>📦</Text>
+
+          <View style={styles.circleIcon}>
+            <Text style={styles.largeIcon}>
+              📦
+            </Text>
           </View>
 
           <Text style={styles.actionTitle}>
             I Found Something
           </Text>
 
-          <Text style={styles.actionDescription}>
+          <Text style={styles.actionSubtitle}>
             Help someone find their item
           </Text>
-        </Pressable>
+
+        </TouchableOpacity>
+
       </View>
 
-      {/* Possible Matches */}
-      <View style={styles.sectionHeader}>
+
+      {/* ================= POSSIBLE MATCHES ================= */}
+      <View style={styles.matchesHeader}>
+
         <Text style={styles.sectionTitle}>
           Possible Matches
         </Text>
 
-        <Pressable
+        <TouchableOpacity
           onPress={() => navigation.navigate("Search")}
         >
           <Text style={styles.seeAll}>
             See All
           </Text>
-        </Pressable>
+        </TouchableOpacity>
+
       </View>
 
-      <View style={styles.emptyCard}>
-        <Text style={styles.emptyIcon}>🔗</Text>
 
-        <Text style={styles.emptyTitle}>
+      {/* ================= EMPTY MATCH CARD ================= */}
+      <View style={styles.matchCard}>
+
+        <Text style={styles.linkIcon}>
+          🔗
+        </Text>
+
+        <Text style={styles.noMatchText}>
           No possible matches yet
         </Text>
 
-        <Text style={styles.emptyText}>
-          When we find a possible match for your lost
-          or found item, it will appear here.
-        </Text>
-      </View>
-
-      {/* Recent Items */}
-      <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>
-          Recent Items
+        <Text style={styles.noMatchSubText}>
+          Your possible matches will appear here.
         </Text>
 
-        <Pressable
-          onPress={() => navigation.navigate("Search")}
-        >
-          <Text style={styles.seeAll}>
-            View All
-          </Text>
-        </Pressable>
       </View>
 
-      <View style={styles.itemCard}>
-        <View style={styles.itemIcon}>
-          <Text style={styles.itemEmoji}>📱</Text>
-        </View>
-
-        <View style={styles.itemInfo}>
-          <Text style={styles.itemName}>
-            Example Item
-          </Text>
-
-          <Text style={styles.itemLocation}>
-            📍 Library
-          </Text>
-
-          <Text style={styles.itemDate}>
-            Recently reported
-          </Text>
-        </View>
-
-        <View style={styles.foundBadge}>
-          <Text style={styles.foundBadgeText}>
-            FOUND
-          </Text>
-        </View>
-      </View>
-
-      {/* How FindBack Works */}
-      <View style={styles.infoCard}>
-        <Text style={styles.infoTitle}>
-          💡 How FindBack works
-        </Text>
-
-        <Text style={styles.infoText}>
-          Report your lost or found item → We find
-          possible matches → Connect securely →
-          Verify ownership → Return the item.
-        </Text>
-      </View>
-
-      <View style={styles.bottomSpace} />
     </ScrollView>
   );
 }
 
+
+/* ================================================= */
+/*                    STYLES                         */
+/* ================================================= */
+
 const styles = StyleSheet.create({
+
+  /* Main container */
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: "#F7F9FC",
+    paddingHorizontal: 24,
   },
 
-  content: {
-    padding: theme.spacing.lg,
-    paddingBottom: theme.spacing.xxl,
-  },
+
+  /* ================= HEADER ================= */
 
   header: {
+    marginTop: 45,
+    marginBottom: 28,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.lg,
   },
 
-  headerText: {
-    flex: 1,
-    paddingRight: theme.spacing.md,
-  },
-
-  greeting: {
-    fontSize: theme.fontSize.body,
-    color: theme.colors.muted,
-    marginBottom: theme.spacing.xs,
+  hello: {
+    fontSize: 18,
+    color: "#64748B",
+    marginBottom: 8,
   },
 
   title: {
-    fontSize: 30,
-    fontWeight: "700",
-    color: theme.colors.text,
+    fontSize: 36,
+    fontWeight: "bold",
+    color: "#0F172A",
   },
 
   subtitle: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: theme.spacing.xs,
+    fontSize: 15,
+    color: "#64748B",
+    marginTop: 5,
   },
 
+
+  /* Header buttons */
+  headerButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+
+
+  /* Notification button */
   notificationButton: {
-    width: 46,
-    height: 46,
-    borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
+    width: 58,
+    height: 58,
+    borderRadius: 30,
+    backgroundColor: "#FFFFFF",
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
   },
 
   notificationIcon: {
-    fontSize: 21,
-  },
-
-  searchBox: {
-    height: 54,
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.md,
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: theme.spacing.md,
-    marginBottom: theme.spacing.lg,
-  },
-
-  searchIcon: {
-    fontSize: 18,
-    marginRight: theme.spacing.sm,
-  },
-
-  searchText: {
-    color: theme.colors.muted,
-    fontSize: theme.fontSize.body,
-  },
-
-  /* My Items */
-
-  myItemsCard: {
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: theme.spacing.xl,
-  },
-
-  myItemsIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colors.primaryLight,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: theme.spacing.md,
-  },
-
-  myItemsEmoji: {
-    fontSize: 23,
-  },
-
-  myItemsInfo: {
-    flex: 1,
-  },
-
-  myItemsTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
-  },
-
-  myItemsDescription: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 4,
-  },
-
-  myItemsArrow: {
-    fontSize: 22,
-    color: theme.colors.primary,
-    fontWeight: "600",
-  },
-
-  /* Sections */
-
-  sectionTitle: {
-    fontSize: theme.fontSize.subtitle,
-    fontWeight: "700",
-    color: theme.colors.text,
-    marginBottom: theme.spacing.md,
-  },
-
-  actionRow: {
-    flexDirection: "row",
-    gap: theme.spacing.md,
-    marginBottom: theme.spacing.xl,
-  },
-
-  actionCard: {
-    flex: 1,
-    minHeight: 180,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
-    borderWidth: 1,
-  },
-
-  lostCard: {
-    backgroundColor: "#FEF2F2",
-    borderColor: "#FECACA",
-  },
-
-  foundCard: {
-    backgroundColor: "#F0FDF4",
-    borderColor: "#BBF7D0",
-  },
-
-  iconCircle: {
-    width: 46,
-    height: 46,
-    borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.surface,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: theme.spacing.md,
-  },
-
-  actionIcon: {
-    fontSize: 22,
-  },
-
-  actionTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
-    marginBottom: theme.spacing.sm,
-  },
-
-  actionDescription: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    lineHeight: 18,
-  },
-
-  sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: theme.spacing.md,
-  },
-
-  seeAll: {
-    color: theme.colors.primary,
-    fontSize: theme.fontSize.small,
-    fontWeight: "600",
-  },
-
-  /* Possible Matches */
-
-  emptyCard: {
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.xl,
-    alignItems: "center",
-    marginBottom: theme.spacing.xl,
-  },
-
-  emptyIcon: {
-    fontSize: 34,
-    marginBottom: theme.spacing.sm,
-  },
-
-  emptyTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
-    textAlign: "center",
-  },
-
-  emptyText: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    textAlign: "center",
-    lineHeight: 18,
-    marginTop: theme.spacing.sm,
-  },
-
-  /* Recent Items */
-
-  itemCard: {
-    backgroundColor: theme.colors.surface,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: theme.spacing.xl,
-  },
-
-  itemIcon: {
-    width: 58,
-    height: 58,
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colors.primaryLight,
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: theme.spacing.md,
-  },
-
-  itemEmoji: {
     fontSize: 25,
   },
 
-  itemInfo: {
+
+  /* Logout button */
+  logoutButton: {
+    width: 58,
+    height: 58,
+    borderRadius: 30,
+    backgroundColor: "#FFF1F2",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#FECDD3",
+  },
+
+  logoutIcon: {
+    fontSize: 25,
+  },
+
+
+  /* ================= SEARCH ================= */
+
+  searchBox: {
+    height: 68,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 15,
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginBottom: 28,
+  },
+
+  searchIcon: {
+    fontSize: 23,
+    marginRight: 14,
+  },
+
+  searchText: {
+    fontSize: 17,
+    color: "#64748B",
+  },
+
+
+  /* ================= MY ITEMS ================= */
+
+  myItemsCard: {
+    backgroundColor: "#FFFFFF",
+    minHeight: 105,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  cardLeft: {
+    flexDirection: "row",
+    alignItems: "center",
     flex: 1,
   },
 
-  itemName: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
+  iconBox: {
+    width: 62,
+    height: 62,
+    borderRadius: 14,
+    backgroundColor: "#EEF5FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 18,
   },
 
-  itemLocation: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 4,
+  cardIcon: {
+    fontSize: 30,
   },
 
-  itemDate: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 2,
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#0F172A",
   },
 
-  foundBadge: {
-    backgroundColor: "#DCFCE7",
-    paddingHorizontal: theme.spacing.sm,
-    paddingVertical: 6,
-    borderRadius: theme.radius.full,
+  cardSubtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    marginTop: 5,
   },
 
-  foundBadgeText: {
-    color: theme.colors.found,
-    fontSize: 10,
-    fontWeight: "700",
+  arrow: {
+    fontSize: 28,
+    color: "#2563EB",
   },
 
-  /* Info */
 
-  infoCard: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.lg,
+  /* ================= CHATBOT ================= */
+
+  chatbotCard: {
+    backgroundColor: "#EAF2FF",
+    minHeight: 105,
+    borderRadius: 18,
     borderWidth: 1,
-    borderColor: "#DBEAFE",
+    borderColor: "#C7D9FF",
+    paddingHorizontal: 20,
+    marginTop: 18,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 
-  infoTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.sm,
+  chatbotIconBox: {
+    width: 62,
+    height: 62,
+    borderRadius: 14,
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 18,
   },
 
-  infoText: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.textSecondary,
-    lineHeight: 19,
+  chatbotIcon: {
+    fontSize: 30,
   },
 
-  bottomSpace: {
-    height: theme.spacing.xl,
+  chatbotTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#0F172A",
   },
+
+  chatbotSubtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    marginTop: 5,
+    paddingRight: 10,
+  },
+
+  chatbotArrow: {
+    fontSize: 28,
+    color: "#2563EB",
+  },
+
+
+  /* ================= SECTION ================= */
+
+  sectionTitle: {
+    fontSize: 23,
+    fontWeight: "bold",
+    color: "#0F172A",
+    marginTop: 38,
+    marginBottom: 18,
+  },
+
+
+  /* ================= LOST / FOUND ================= */
+
+  actionRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  lostCard: {
+    width: "48.5%",
+    minHeight: 225,
+    backgroundColor: "#FFF1F2",
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#FFCDD2",
+    padding: 20,
+  },
+
+  foundCard: {
+    width: "48.5%",
+    minHeight: 225,
+    backgroundColor: "#F0FDF4",
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#BBF7D0",
+    padding: 20,
+  },
+
+  circleIcon: {
+    width: 58,
+    height: 58,
+    borderRadius: 30,
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 22,
+  },
+
+  largeIcon: {
+    fontSize: 28,
+  },
+
+  actionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#0F172A",
+    marginBottom: 8,
+  },
+
+  actionSubtitle: {
+    fontSize: 14,
+    color: "#64748B",
+    lineHeight: 20,
+  },
+
+
+  /* ================= MATCHES ================= */
+
+  matchesHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  seeAll: {
+    color: "#2563EB",
+    fontSize: 15,
+    fontWeight: "600",
+  },
+
+  matchCard: {
+    backgroundColor: "#FFFFFF",
+    minHeight: 180,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 40,
+  },
+
+  linkIcon: {
+    fontSize: 40,
+    marginBottom: 10,
+  },
+
+  noMatchText: {
+    fontSize: 17,
+    fontWeight: "600",
+    color: "#334155",
+  },
+
+  noMatchSubText: {
+    fontSize: 14,
+    color: "#64748B",
+    marginTop: 5,
+  },
+
 });
