@@ -1,10 +1,5 @@
 
 
-// import LoginScreen from "./screens/LoginScreen";
-
-// export default function App() {
-//   return <LoginScreen />;
-// }
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,6 +10,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ReportItemScreen from "./screens/ReportItemScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ItemDetailsScreen from "./screens/ItemDetailsScreen";
+import MyItemsScreen from "./screens/MyItemsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +35,10 @@ name="ReportItem"
 <Stack.Screen
   name="ItemDetails"
   component={ItemDetailsScreen}
+/>
+<Stack.Screen
+  name="MyItems"
+  component={MyItemsScreen}
 />
       </Stack.Navigator>
     </NavigationContainer>
