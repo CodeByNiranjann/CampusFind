@@ -669,7 +669,7 @@ export async function findMatches(newItem) {
       );
 
       // 70+ = possible match
-      if (score >= 70) {
+      if (score >= 50) {
         const lostItem =
           newItem.type === "LOST"
             ? newItem
