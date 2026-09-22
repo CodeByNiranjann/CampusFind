@@ -11,6 +11,7 @@ import ReportItemScreen from "./screens/ReportItemScreen";
 import SearchScreen from "./screens/SearchScreen";
 import ItemDetailsScreen from "./screens/ItemDetailsScreen";
 import MyItemsScreen from "./screens/MyItemsScreen";
+import PossibleMatchesScreen from "./screens/PossibleMatchesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +40,10 @@ name="ReportItem"
 <Stack.Screen
   name="MyItems"
   component={MyItemsScreen}
+/>
+<Stack.Screen
+  name="PossibleMatches"
+  component={PossibleMatchesScreen}
 />
       </Stack.Navigator>
     </NavigationContainer>
