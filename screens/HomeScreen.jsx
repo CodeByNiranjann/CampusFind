@@ -2426,7 +2426,9 @@ export default function HomeScreen({ navigation }) {
       >
         <View style={styles.header}>
           <View style={styles.headerText}>
-            <Text style={styles.greeting}>Hello 👋</Text>
+            < Text style={styles.greeting}>
+  Hello {auth.currentUser?.displayName || "User"} 👋
+</Text>
 
             <Text style={styles.title}>FindBack</Text>
 
@@ -2640,64 +2642,77 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: "#F8FAFC",
   },
 
   content: {
-    padding: theme.spacing.lg,
-    paddingBottom: 100,
+    paddingHorizontal: 18,
+    paddingTop: 10,
+    paddingBottom: 120,
   },
 
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-start",
-    marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.lg,
+    alignItems: "center",
+    marginTop: 12,
+    marginBottom: 22,
   },
 
   headerText: {
     flex: 1,
-    paddingRight: theme.spacing.md,
+    paddingRight: 12,
   },
 
   greeting: {
-    fontSize: theme.fontSize.body,
-    color: theme.colors.muted,
-    marginBottom: theme.spacing.xs,
+    fontSize: 16,
+    color: "#64748B",
+    fontWeight: "500",
+    marginBottom: 4,
   },
 
   title: {
-    fontSize: 30,
-    fontWeight: "700",
-    color: theme.colors.text,
+    fontSize: 32,
+    fontWeight: "800",
+    color: "#0F172A",
+    letterSpacing: -0.5,
   },
 
   subtitle: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: theme.spacing.xs,
+    fontSize: 14,
+    color: "#64748B",
+    marginTop: 5,
+    lineHeight: 20,
   },
 
   headerButtons: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 9,
   },
 
   notificationButton: {
     width: 46,
     height: 46,
-    borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.surface,
+    borderRadius: 23,
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: "#E2E8F0",
     justifyContent: "center",
     alignItems: "center",
+
+    elevation: 2,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
   },
 
   notificationIcon: {
@@ -2707,65 +2722,85 @@ const styles = StyleSheet.create({
   logoutButton: {
     width: 46,
     height: 46,
-    borderRadius: theme.radius.full,
-    backgroundColor: "#FEE2E2",
+    borderRadius: 23,
+    backgroundColor: "#FFF1F2",
     borderWidth: 1,
-    borderColor: "#FCA5A5",
+    borderColor: "#FECDD3",
     justifyContent: "center",
     alignItems: "center",
   },
 
   logoutText: {
     fontSize: 22,
-    color: "#DC2626",
+    color: "#E11D48",
     fontWeight: "700",
   },
 
   searchBox: {
-    height: 54,
-    backgroundColor: theme.colors.surface,
+    height: 58,
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.md,
+    borderColor: "#E2E8F0",
+    borderRadius: 17,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: theme.spacing.md,
-    marginBottom: theme.spacing.lg,
+    paddingHorizontal: 18,
+    marginBottom: 22,
+
+    elevation: 2,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.06,
+    shadowRadius: 5,
   },
 
   searchIcon: {
-    fontSize: 18,
-    marginRight: theme.spacing.sm,
+    fontSize: 20,
+    marginRight: 12,
   },
 
   searchText: {
-    color: theme.colors.muted,
-    fontSize: theme.fontSize.body,
+    color: "#94A3B8",
+    fontSize: 15,
   },
 
   myItemsCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
+    borderColor: "#E2E8F0",
+    borderRadius: 20,
+    padding: 17,
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: theme.spacing.xl,
+    marginBottom: 28,
+
+    elevation: 2,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
   },
 
   myItemsIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colors.primaryLight,
+    width: 54,
+    height: 54,
+    borderRadius: 16,
+    backgroundColor: "#EFF6FF",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: theme.spacing.md,
+    marginRight: 14,
   },
 
   myItemsEmoji: {
-    fontSize: 23,
+    fontSize: 24,
   },
 
   myItemsInfo: {
@@ -2773,46 +2808,56 @@ const styles = StyleSheet.create({
   },
 
   myItemsTitle: {
-    fontSize: theme.fontSize.body,
+    fontSize: 17,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: "#0F172A",
   },
 
   myItemsDescription: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 4,
+    fontSize: 13,
+    color: "#64748B",
+    marginTop: 5,
   },
 
   myItemsArrow: {
-    fontSize: 22,
-    color: theme.colors.primary,
+    fontSize: 24,
+    color: "#2563EB",
     fontWeight: "600",
   },
 
   sectionTitle: {
-    fontSize: theme.fontSize.subtitle,
-    fontWeight: "700",
-    color: theme.colors.text,
-    marginBottom: theme.spacing.md,
+    fontSize: 20,
+    fontWeight: "800",
+    color: "#0F172A",
+    marginBottom: 14,
   },
 
   actionRow: {
     flexDirection: "row",
-    gap: theme.spacing.md,
-    marginBottom: theme.spacing.xl,
+    gap: 14,
+    marginBottom: 28,
   },
 
   actionCard: {
     flex: 1,
-    minHeight: 180,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
+    minHeight: 190,
+    borderRadius: 20,
+    padding: 18,
     borderWidth: 1,
+
+    elevation: 1,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
   },
 
   lostCard: {
-    backgroundColor: "#FEF2F2",
+    backgroundColor: "#FFF5F5",
     borderColor: "#FECACA",
   },
 
@@ -2822,101 +2867,121 @@ const styles = StyleSheet.create({
   },
 
   iconCircle: {
-    width: 46,
-    height: 46,
-    borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.surface,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: "#FFFFFF",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: theme.spacing.md,
+    marginBottom: 18,
   },
 
   actionIcon: {
-    fontSize: 22,
+    fontSize: 23,
   },
 
   actionTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
-    marginBottom: theme.spacing.sm,
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#0F172A",
+    marginBottom: 7,
   },
 
   actionDescription: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    lineHeight: 18,
+    fontSize: 13,
+    color: "#64748B",
+    lineHeight: 19,
   },
 
   sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing.md,
+    marginBottom: 14,
   },
 
   seeAll: {
-    color: theme.colors.primary,
-    fontSize: theme.fontSize.small,
-    fontWeight: "600",
+    color: "#2563EB",
+    fontSize: 13,
+    fontWeight: "700",
   },
 
   emptyCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.xl,
+    borderColor: "#E2E8F0",
+    borderRadius: 20,
+    padding: 24,
     alignItems: "center",
-    marginBottom: theme.spacing.xl,
+    marginBottom: 28,
+
+    elevation: 1,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
   },
 
   emptyIcon: {
-    fontSize: 34,
-    marginBottom: theme.spacing.sm,
+    fontSize: 35,
+    marginBottom: 10,
   },
 
   emptyTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#0F172A",
     textAlign: "center",
   },
 
   emptyText: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
+    fontSize: 13,
+    color: "#64748B",
     textAlign: "center",
-    lineHeight: 18,
-    marginTop: theme.spacing.sm,
+    lineHeight: 19,
+    marginTop: 8,
   },
 
   matchLink: {
-    marginTop: theme.spacing.md,
-    color: theme.colors.primary,
-    fontSize: theme.fontSize.small,
+    marginTop: 14,
+    color: "#2563EB",
+    fontSize: 13,
     fontWeight: "700",
   },
 
   itemCard: {
-    backgroundColor: theme.colors.surface,
+    backgroundColor: "#FFFFFF",
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.md,
+    borderColor: "#E2E8F0",
+    borderRadius: 20,
+    padding: 15,
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: theme.spacing.xl,
+    marginBottom: 24,
+
+    elevation: 1,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
   },
 
   itemIcon: {
     width: 58,
     height: 58,
-    borderRadius: theme.radius.md,
-    backgroundColor: theme.colors.primaryLight,
+    borderRadius: 16,
+    backgroundColor: "#EFF6FF",
     justifyContent: "center",
     alignItems: "center",
-    marginRight: theme.spacing.md,
+    marginRight: 13,
   },
 
   itemEmoji: {
@@ -2928,78 +2993,82 @@ const styles = StyleSheet.create({
   },
 
   itemName: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.text,
+    fontSize: 15,
+    fontWeight: "800",
+    color: "#0F172A",
   },
 
   itemLocation: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 4,
+    fontSize: 12,
+    color: "#64748B",
+    marginTop: 5,
   },
 
   itemDate: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.muted,
-    marginTop: 2,
+    fontSize: 12,
+    color: "#94A3B8",
+    marginTop: 3,
   },
 
   foundBadge: {
     backgroundColor: "#DCFCE7",
-    paddingHorizontal: theme.spacing.sm,
+    paddingHorizontal: 10,
     paddingVertical: 6,
-    borderRadius: theme.radius.full,
+    borderRadius: 20,
   },
 
   foundBadgeText: {
-    color: theme.colors.found,
+    color: "#15803D",
     fontSize: 10,
-    fontWeight: "700",
+    fontWeight: "800",
   },
 
   infoCard: {
-    backgroundColor: theme.colors.primaryLight,
-    borderRadius: theme.radius.lg,
-    padding: theme.spacing.lg,
+    backgroundColor: "#EFF6FF",
+    borderRadius: 20,
+    padding: 19,
     borderWidth: 1,
     borderColor: "#DBEAFE",
+    marginBottom: 10,
   },
 
   infoTitle: {
-    fontSize: theme.fontSize.body,
-    fontWeight: "700",
-    color: theme.colors.primary,
-    marginBottom: theme.spacing.sm,
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#2563EB",
+    marginBottom: 8,
   },
 
   infoText: {
-    fontSize: theme.fontSize.small,
-    color: theme.colors.textSecondary,
-    lineHeight: 19,
+    fontSize: 13,
+    color: "#475569",
+    lineHeight: 20,
   },
 
   bottomSpace: {
-    height: theme.spacing.xl,
+    height: 20,
   },
 
   chatbotButton: {
     position: "absolute",
     right: 20,
-    bottom: 30,
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: theme.colors.primary,
+    bottom: 28,
+    width: 66,
+    height: 66,
+    borderRadius: 33,
+    backgroundColor: "#2563EB",
     justifyContent: "center",
     alignItems: "center",
+
     elevation: 8,
+
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 5,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+    shadowOpacity: 0.22,
+    shadowRadius: 7,
   },
 
   chatbotIcon: {
@@ -3009,7 +3078,7 @@ const styles = StyleSheet.create({
   chatbotText: {
     color: "#FFFFFF",
     fontSize: 9,
-    fontWeight: "700",
+    fontWeight: "800",
     marginTop: 1,
   },
 });
