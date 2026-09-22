@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isValidKonguEmail } from "../utils/validation";
 import {
   View,
   Text,
@@ -19,19 +20,27 @@ export default function RegisterScreen({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegister = () => {
-    if (password !== confirmPassword) {
-      console.log("Passwords do not match");
-      return;
-    }
+  const cleanEmail = email.trim().toLowerCase();
 
-    console.log("Register:", {
-      name,
-      email,
-      password,
-    });
+  if (!isValidKonguEmail(cleanEmail)) {
+    console.log("Please use your Kongu Engineering College email.");
+    return;
+  }
 
-    // Firebase registration will be added here later
-  };
+  if (password !== confirmPassword) {
+    console.log("Passwords do not match.");
+    return;
+  }
+
+  if (password.length < 6) {
+    console.log("Password must be at least 6 characters.");
+    return;
+  }
+
+  console.log("Valid Kongu email:", cleanEmail);
+
+  // Firebase registration will go here
+};
 
   return (
     <ScrollView
