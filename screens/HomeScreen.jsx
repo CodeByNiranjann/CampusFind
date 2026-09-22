@@ -612,15 +612,15 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.headerButtons}>
           {/* Notification */}
           <Pressable
-            style={styles.notificationButton}
-            onPress={() => {
-              // Notifications screen will be added next
-            }}
-          >
-            <Text style={styles.notificationIcon}>
-              🔔
-            </Text>
-          </Pressable>
+  style={styles.notificationButton}
+  onPress={() =>
+    navigation.navigate("Notifications")
+  }
+>
+  <Text style={styles.notificationIcon}>
+    🔔
+  </Text>
+</Pressable>
 
           {/* Logout */}
           <Pressable
