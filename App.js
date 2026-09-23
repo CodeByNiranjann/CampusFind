@@ -78,6 +78,12 @@ import PossibleMatchesScreen from "./screens/PossibleMatchesScreen";
 import ChatbotScreen from "./screens/ChatbotScreen";
 import NotificationsScreen from "./screens/NotificationsScreen";
 
+import FoundItemDetails from "./screens/FoundItemDetails";
+
+import ChatScreen from "./screens/ChatScreen";
+
+import MyMessagesScreen from "./screens/MyMessagesScreen";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -136,6 +142,19 @@ export default function App() {
           name="Notifications"
           component={NotificationsScreen}
         />
+        <Stack.Screen
+  name="FoundItemDetails"
+  component={FoundItemDetails}
+/>
+<Stack.Screen
+  name="ChatScreen"
+  component={ChatScreen}
+/>
+<Stack.Screen
+  name="MyMessages"
+  component={MyMessagesScreen}
+/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -16,6 +16,7 @@ import { db } from "../services/firebase";
 
 export default function ChatbotScreen({ navigation }) {
   const [message, setMessage] = useState("");
+
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -30,7 +31,9 @@ export default function ChatbotScreen({ navigation }) {
 
   const searchDatabase = async (keyword, intent) => {
     try {
-      const snapshot = await getDocs(collection(db, "items"));
+      const snapshot = await getDocs(
+        collection(db, "items")
+      );
 
       const searchText = keyword.toLowerCase();
 
@@ -39,15 +42,27 @@ export default function ChatbotScreen({ navigation }) {
       snapshot.forEach((doc) => {
         const item = doc.data();
 
-        const itemName = String(item.itemName || "").toLowerCase();
-        const category = String(item.category || "").toLowerCase();
-        const description = String(item.description || "").toLowerCase();
-        const location = String(item.location || "").toLowerCase();
+        const itemName = String(
+          item.itemName || ""
+        ).toLowerCase();
+
+        const category = String(
+          item.category || ""
+        ).toLowerCase();
+
+        const description = String(
+          item.description || ""
+        ).toLowerCase();
+
+        const location = String(
+          item.location || ""
+        ).toLowerCase();
 
         const fullText =
           `${itemName} ${category} ${description} ${location}`;
 
-        const keywordMatch = fullText.includes(searchText);
+        const keywordMatch =
+          fullText.includes(searchText);
 
         const typeMatch =
           intent === "LOST"
@@ -64,7 +79,11 @@ export default function ChatbotScreen({ navigation }) {
 
       return results;
     } catch (error) {
-      console.log("Database search error:", error);
+      console.log(
+        "Database search error:",
+        error
+      );
+
       return [];
     }
   };
@@ -99,7 +118,8 @@ export default function ChatbotScreen({ navigation }) {
 
     if (
       text.includes("how") &&
-      (text.includes("lost") || text.includes("report"))
+      (text.includes("lost") ||
+        text.includes("report"))
     ) {
       reply =
         "To report a LOST item, follow these steps:\n\n" +
@@ -231,7 +251,11 @@ export default function ChatbotScreen({ navigation }) {
             sender: "bot",
             text:
               `🔎 I found ${results.length} possible item(s) in the database.\n\n` +
-              `These are ${intent === "LOST" ? "FOUND" : "LOST"} reports related to "${keyword}".`,
+              `These are ${
+                intent === "LOST"
+                  ? "FOUND"
+                  : "LOST"
+              } reports related to "${keyword}".`,
           },
           {
             id: Date.now() + 2,
@@ -252,7 +276,11 @@ export default function ChatbotScreen({ navigation }) {
           type: "text",
           sender: "bot",
           text:
-            `🔎 I searched the CampusFind database for "${keyword}", but I couldn't find a matching ${intent === "LOST" ? "found" : "lost"} item.\n\n` +
+            `🔎 I searched the CampusFind database for "${keyword}", but I couldn't find a matching ${
+              intent === "LOST"
+                ? "found"
+                : "lost"
+            } item.\n\n` +
             "You can try another item name, category, or description.",
         },
       ]);
@@ -327,7 +355,9 @@ export default function ChatbotScreen({ navigation }) {
         <Pressable
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButton}>←</Text>
+          <Text style={styles.backButton}>
+            ←
+          </Text>
         </Pressable>
 
         <View>
@@ -354,9 +384,17 @@ export default function ChatbotScreen({ navigation }) {
                 style={styles.resultsContainer}
               >
                 {item.items.map((foundItem) => (
-                  <View
+                  <Pressable
                     key={foundItem.id}
                     style={styles.itemCard}
+                    onPress={() =>
+                      navigation.navigate(
+                        "FoundItemDetails",
+                        {
+                          item: foundItem,
+                        }
+                      )
+                    }
                   >
                     <Text style={styles.itemName}>
                       📱{" "}
@@ -382,14 +420,18 @@ export default function ChatbotScreen({ navigation }) {
                         "No description"}
                     </Text>
 
-                    <View style={styles.typeBadge}>
+                    <View
+                      style={styles.typeBadge}
+                    >
                       <Text
-                        style={styles.typeBadgeText}
+                        style={
+                          styles.typeBadgeText
+                        }
                       >
                         {foundItem.type}
                       </Text>
                     </View>
-                  </View>
+                  </Pressable>
                 ))}
               </View>
             );
@@ -422,6 +464,7 @@ export default function ChatbotScreen({ navigation }) {
         {loading && (
           <View style={styles.loadingBox}>
             <ActivityIndicator size="small" />
+
             <Text style={styles.loadingText}>
               Searching CampusFind...
             </Text>
@@ -443,7 +486,9 @@ export default function ChatbotScreen({ navigation }) {
           style={styles.sendButton}
           onPress={sendMessage}
         >
-          <Text style={styles.sendText}>➤</Text>
+          <Text style={styles.sendText}>
+            ➤
+          </Text>
         </Pressable>
       </View>
     </KeyboardAvoidingView>
