@@ -154,7 +154,10 @@ export default function App() {
   name="MyMessages"
   component={MyMessagesScreen}
 />
-
+<Stack.Screen
+  name="Chat"
+  component={ChatScreen}
+/>
       </Stack.Navigator>
     </NavigationContainer>
   );

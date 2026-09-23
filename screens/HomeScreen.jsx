@@ -3202,6 +3202,13 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
+<Pressable
+  onPress={() =>
+    navigation.navigate("MyMessages")
+  }
+>
+  <Text>💬 My Messages</Text>
+</Pressable>
         {/* SEARCH */}
         <Pressable
           style={styles.searchBox}

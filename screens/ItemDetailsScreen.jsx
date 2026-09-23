@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { theme } from "../constants/theme";
+import { auth } from "../services/firebase";
 
 export default function ItemDetailsScreen({ route, navigation }) {
   const item = route?.params?.item;
@@ -26,11 +27,42 @@ export default function ItemDetailsScreen({ route, navigation }) {
 
   const isLost = item.type === "LOST";
 
+  const itemName =
+    item.itemName || item.name || "Unknown Item";
+
   const handleContact = () => {
-    Alert.alert(
-      "Coming Soon",
-      "Private chat will be connected with Firebase later."
-    );
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      Alert.alert(
+        "Login Required",
+        "Please login first."
+      );
+      return;
+    }
+
+    if (!item.userId) {
+      Alert.alert(
+        "Unable to Contact",
+        "This item does not have a finder account linked to it."
+      );
+      return;
+    }
+
+    if (item.userId === currentUser.uid) {
+      Alert.alert(
+        "Your Item",
+        "You cannot message yourself."
+      );
+      return;
+    }
+
+    navigation.navigate("Chat", {
+      item: item,
+      finderUserId: item.userId,
+      itemId: item.id,
+      itemName: itemName,
+    });
   };
 
   return (
@@ -47,7 +79,9 @@ export default function ItemDetailsScreen({ route, navigation }) {
           <Text style={styles.backText}>‹</Text>
         </Pressable>
 
-        <Text style={styles.headerTitle}>Item Details</Text>
+        <Text style={styles.headerTitle}>
+          Item Details
+        </Text>
       </View>
 
       {/* Image */}
@@ -57,6 +91,14 @@ export default function ItemDetailsScreen({ route, navigation }) {
             ? "🪪"
             : item.category === "Wallet"
             ? "👛"
+            : item.category === "Pen"
+            ? "🖊️"
+            : item.category === "Mouse"
+            ? "🖱️"
+            : item.category === "Phone"
+            ? "📱"
+            : item.category === "Bag"
+            ? "🎒"
             : "📦"}
         </Text>
       </View>
@@ -65,10 +107,12 @@ export default function ItemDetailsScreen({ route, navigation }) {
       <View style={styles.mainCard}>
         <View style={styles.titleRow}>
           <View style={styles.titleContainer}>
-            <Text style={styles.itemName}>{item.name}</Text>
+            <Text style={styles.itemName}>
+              {itemName}
+            </Text>
 
             <Text style={styles.category}>
-              {item.category}
+              {item.category || "Other"}
             </Text>
           </View>
 
@@ -93,39 +137,58 @@ export default function ItemDetailsScreen({ route, navigation }) {
           </View>
         </View>
 
-        {/* Details */}
+        {/* Location */}
         <View style={styles.detailRow}>
           <Text style={styles.detailIcon}>📍</Text>
 
-          <View>
+          <View style={styles.detailContent}>
             <Text style={styles.detailLabel}>
               Location
             </Text>
 
             <Text style={styles.detailValue}>
-              {item.location}
+              {item.location || "Not specified"}
             </Text>
           </View>
         </View>
 
+        {/* Date */}
         <View style={styles.detailRow}>
           <Text style={styles.detailIcon}>📅</Text>
 
-          <View>
+          <View style={styles.detailContent}>
             <Text style={styles.detailLabel}>
               Date
             </Text>
 
             <Text style={styles.detailValue}>
-              {item.date}
+              {item.date || "Not specified"}
             </Text>
           </View>
         </View>
 
-        <View style={styles.detailRow}>
-          <Text style={styles.detailIcon}>🕐</Text>
+        {/* Time */}
+        {item.time ? (
+          <View style={styles.detailRow}>
+            <Text style={styles.detailIcon}>🕐</Text>
 
-          <View>
+            <View style={styles.detailContent}>
+              <Text style={styles.detailLabel}>
+                Time
+              </Text>
+
+              <Text style={styles.detailValue}>
+                {item.time}
+              </Text>
+            </View>
+          </View>
+        ) : null}
+
+        {/* Reported */}
+        <View style={styles.detailRow}>
+          <Text style={styles.detailIcon}>👤</Text>
+
+          <View style={styles.detailContent}>
             <Text style={styles.detailLabel}>
               Reported
             </Text>
@@ -145,9 +208,8 @@ export default function ItemDetailsScreen({ route, navigation }) {
 
         <View style={styles.descriptionCard}>
           <Text style={styles.description}>
-            This item was reported on campus. If you believe
-            this item belongs to you, use the contact option
-            below. Ownership will be verified before handover.
+            {item.description ||
+              "No description was provided for this item."}
           </Text>
         </View>
       </View>
@@ -163,9 +225,28 @@ export default function ItemDetailsScreen({ route, navigation }) {
             Possible Match
           </Text>
 
+          <Text style={styles.matchedItemName}>
+            {itemName}
+          </Text>
+
           <Text style={styles.matchText}>
-            FindBack will compare this item with opposite
-            lost/found reports.
+            Category: {item.category || "Not specified"}
+          </Text>
+
+          {item.description ? (
+            <Text style={styles.matchText}>
+              Description: {item.description}
+            </Text>
+          ) : null}
+
+          {item.location ? (
+            <Text style={styles.matchText}>
+              Location: {item.location}
+            </Text>
+          ) : null}
+
+          <Text style={styles.matchText}>
+            This item may match your lost report.
           </Text>
         </View>
       </View>
@@ -177,13 +258,13 @@ export default function ItemDetailsScreen({ route, navigation }) {
         </Text>
 
         <Text style={styles.securityText}>
-          Personal contact details are not publicly displayed.
-          Ownership verification is required before returning
-          an item.
+          Personal contact details are not publicly
+          displayed. Ownership verification is required
+          before returning an item.
         </Text>
       </View>
 
-      {/* Contact */}
+      {/* Contact Button */}
       <Pressable
         style={styles.contactButton}
         onPress={handleContact}
@@ -327,6 +408,10 @@ const styles = StyleSheet.create({
     width: 36,
   },
 
+  detailContent: {
+    flex: 1,
+  },
+
   detailLabel: {
     fontSize: 11,
     color: theme.colors.muted,
@@ -392,6 +477,13 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.body,
     fontWeight: "700",
     color: theme.colors.primary,
+  },
+
+  matchedItemName: {
+    fontSize: theme.fontSize.body,
+    fontWeight: "700",
+    color: theme.colors.text,
+    marginTop: 6,
   },
 
   matchText: {
